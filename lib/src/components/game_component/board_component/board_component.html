@@ -1,0 +1,12 @@
+<div
+    class="board-canvas">
+    <div
+        *ngFor="let y of fieldIndexesHeight"
+        class="board-row">
+        <div
+            *ngFor="let x of fieldIndexesWidth"
+            class="board-cell"
+            [class.filled]="isFilledAtCell(x, y)"
+        </div>
+    </div>
+</div>

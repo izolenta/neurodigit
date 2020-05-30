@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  .board-canvas {
+    padding: 5px;
+    background: black;
+    .board-row {
+      display: flex;
+      .board-cell {
+        width: 28px;
+        height: 28px;
+        background: white;
+        &.filled {
+          background: indigo;
+        }
+      }
+    }
+  }
+}
