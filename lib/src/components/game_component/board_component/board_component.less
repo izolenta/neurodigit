@@ -1,5 +1,5 @@
 :host {
-  display: flex;
+  display: inline-block;
   .board-canvas {
     padding: 5px;
     background: black;
@@ -9,6 +9,8 @@
         width: 28px;
         height: 28px;
         background: white;
+        border-left: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
         &.filled {
           background: indigo;
         }

@@ -1,0 +1,13 @@
+<div
+    *ngFor="let res of results; let i = index"
+    class="result-row">
+    <div
+        class="digit">
+        {{ i }}
+    </div>
+    <div
+        class="bar"
+        [class.maxed]="isMaxed(i)"
+        [style.width.px]="getBarLength(i)">
+    </div>
+</div>

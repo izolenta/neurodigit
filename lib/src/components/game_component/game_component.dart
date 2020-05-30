@@ -4,9 +4,9 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:neurodigit/src/actions/start_game_action.dart';
 import 'package:neurodigit/src/components/game_component/board_component/board_component.dart';
+import 'package:neurodigit/src/components/game_component/results_component/results_component.dart';
 import 'package:neurodigit/src/services/game_dispatcher.dart';
 import 'package:neurodigit/src/services/game_providers.dart';
-import 'package:neurodigit/src/services/game_selector.dart';
 import 'package:neurodigit/src/state/game_state.dart';
 import 'package:redux/redux.dart';
 
@@ -14,7 +14,7 @@ import 'package:redux/redux.dart';
   selector: 'snake-game',
   styleUrls: ['game_component.css'],
   templateUrl: 'game_component.html',
-  directives: [BoardComponent],
+  directives: [BoardComponent, ResultsComponent],
   providers: [GameProviders.providers],
   changeDetection: ChangeDetectionStrategy.OnPush,
 )
@@ -24,7 +24,6 @@ class GameComponent implements OnDestroy {
   final ChangeDetectorRef _detector;
   final GameDispatcher _dispatcher;
   final List<StreamSubscription> _subscriptions = [];
-  final GameSelector _selector;
 
   Timer _gameTimer;
 
@@ -34,8 +33,7 @@ class GameComponent implements OnDestroy {
       this._store,
       this._zone,
       this._detector,
-      this._dispatcher,
-      this._selector)
+      this._dispatcher)
   {
     _init();
   }
@@ -46,8 +44,15 @@ class GameComponent implements OnDestroy {
           _zone.run(_detector.markForCheck);
         }),
         _dispatcher.onAction.listen(_store.dispatch),
+        document.onKeyDown.listen(_onKeyPress),
       ]);
     });
+  }
+
+  void _onKeyPress(KeyboardEvent event) {
+    if (event.keyCode == KeyCode.SPACE) {
+      _dispatcher.dispatch(StartGameAction());
+    }
   }
 
   @override

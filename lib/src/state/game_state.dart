@@ -10,7 +10,7 @@ abstract class GameState implements Built<GameState, GameStateBuilder> {
 
   GameState._();
 
-  BuiltList<int> get digitPoints;
+  BuiltSet<int> get digitPoints;
 
   BuiltList<int> get results;
 }

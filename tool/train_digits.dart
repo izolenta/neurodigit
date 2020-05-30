@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:neurodigit/src/constants.dart';
 import 'package:perceptron/perceptron.dart';
 
 void main(List args) async {
@@ -31,6 +32,8 @@ void main(List args) async {
     }
     labelPositionCounter++;
     data.add(TrainingData(inputs, outputs));
+    _printInput(inputs);
+    print('========== ${imageLabels[labelPositionCounter-1]} ==========');
     if (i % 100 == 0) {
       perceptron.train(data);
       final file = File('training.prg').openSync(mode: FileMode.write);
@@ -50,6 +53,17 @@ void main(List args) async {
   file.writeStringSync('\n');
   file.closeSync();
   print(perceptron.toJson());
+}
+
+void _printInput(List<double> inputs) {
+  for (var i=0; i<boardHeight; i++) {
+    var line = '';
+    for (var j=0; j<boardHeight; j++) {
+      line+=inputs[i * boardWidth + j] == 0? '.' : 'X';
+    }
+    print('$line');
+  }
+  print('\n');
 }
 
 int _readLong(List<int> data, int counter) {

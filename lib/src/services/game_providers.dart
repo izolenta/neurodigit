@@ -5,6 +5,7 @@ import 'game_dispatcher.dart';
 import 'game_effects.dart';
 import 'game_reducer.dart';
 import 'game_selector.dart';
+import 'game_service.dart';
 import 'game_state_factory.dart';
 import 'game_store_factory.dart';
 
@@ -16,5 +17,6 @@ abstract class GameProviders {
     ClassProvider<GameReducer>(GameReducer),
     ClassProvider<GameEffects>(GameEffects),
     ClassProvider<GameSelector>(GameSelector),
+    ClassProvider<GameService>(GameService),
   ];
 }

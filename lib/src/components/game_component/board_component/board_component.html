@@ -1,5 +1,8 @@
 <div
-    class="board-canvas">
+    class="board-canvas"
+    (mouseleave)="onMouseUp()"
+    (mouseup)="onMouseUp()"
+    (mousedown)="onMouseDownParent()">
     <div
         *ngFor="let y of fieldIndexesHeight"
         class="board-row">
@@ -7,6 +10,11 @@
             *ngFor="let x of fieldIndexesWidth"
             class="board-cell"
             [class.filled]="isFilledAtCell(x, y)"
+            (mousedown)="onMouseDown(x, y)"
+            (mousedrag)="onMouseDown(x, y)"
+            (mouseenter)="onMouseMove(x, y)"
+            (mouseup)="onMouseUp()"
+            (mousemove)="onMouseMove(x, y)">
         </div>
     </div>
 </div>

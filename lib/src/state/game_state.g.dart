@@ -8,7 +8,7 @@ part of neurodigit.state.game_state;
 
 class _$GameState extends GameState {
   @override
-  final BuiltList<int> digitPoints;
+  final BuiltSet<int> digitPoints;
   @override
   final BuiltList<int> results;
 
@@ -56,10 +56,10 @@ class _$GameState extends GameState {
 class GameStateBuilder implements Builder<GameState, GameStateBuilder> {
   _$GameState _$v;
 
-  ListBuilder<int> _digitPoints;
-  ListBuilder<int> get digitPoints =>
-      _$this._digitPoints ??= new ListBuilder<int>();
-  set digitPoints(ListBuilder<int> digitPoints) =>
+  SetBuilder<int> _digitPoints;
+  SetBuilder<int> get digitPoints =>
+      _$this._digitPoints ??= new SetBuilder<int>();
+  set digitPoints(SetBuilder<int> digitPoints) =>
       _$this._digitPoints = digitPoints;
 
   ListBuilder<int> _results;
